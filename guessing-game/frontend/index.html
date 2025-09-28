@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Guess the Object</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <script src="js/script.js" defer></script>
+  <script src="js/auth.js"></script>
+</head>
+<body>
+  <div id="digitalTimer" style="display: none;">00:20</div>
+
+  <div id="startScreen" class="game-container">
+    <h1>Guess the Object</h1>
+    <label for="difficulty">Select Difficulty:</label>
+    <select id="difficulty">
+      <option value="easy">Easy</option>
+      <option value="medium" selected>Medium</option>
+      <option value="hard">Hard</option>
+    </select>
+    <label for="category">Select Category:</label>
+    <select id="category">
+      <option value="all" selected>All</option>
+      <option value="animal">Animal</option>
+      <option value="plant">Plant</option>
+      <option value="object">Object</option>
+    </select>
+    <button onclick="startGame()">Start Game</button>
+  </div>
+
+  <div id="gameScreen" class="game-container" style="display: none;">
+    <h1>Guess the Object</h1>
+    <p id="welcomeMessage"></p>
+    <p>Player: <span id="playerNameDisplay"></span></p>
+    <p>Category: <span id="currentCategory">All</span></p>
+    <img id="silhouette" src="media/placeholder.png" alt="Silhouette Image"/>
+    <input type="text" id="guessInput" placeholder="Enter your guess"/>
+    <button onclick="checkGuess()">Submit</button>
+    <button onclick="showHint()">Hint</button>
+    <div id="optionsContainer"></div>
+    <p id="message"></p>
+    <p>Score: <span id="score">0</span></p>
+    <p>High Score: <span id="highScore">0</span></p>
+    <p>Attempts Left: <span id="attempts">3</span></p>
+    <button onclick="finishGame()">Finish Game</button>
+    <button onclick="resetHighScore()">Reset High Score</button>
+    <button onclick="showLeaderboard()">View Leaderboard</button>
+    <button onclick="logout()" class="logout-button">Logout</button>
+    <button onclick="resetMyScores()">Reset My Scores</button>
+    <button onclick="confirmAccountDeletion()" class="delete-button">Delete My Account</button>
+  </div>
+  <!-- Logout Confirmation Modal -->
+<div id="logoutModal" class="modal">
+  <div class="modal-content">
+    <h2>Confirm Logout</h2>
+    <p>Are you sure you want to log out?</p>
+    <div class="modal-buttons">
+      <button onclick="confirmLogout(true)">Yes, Logout</button>
+      <button onclick="confirmLogout(false)">Cancel</button>
+    </div>
+  </div>
+</div>
+<!-- Account Deletion Success Modal -->
+<div id="deleteSuccessModal" class="modal">
+  <div class="modal-content">
+    <h2>Account Deleted ✅</h2>
+    <p>Your account has been deleted successfully.</p>
+    <p>Redirecting you to the login page...</p>
+  </div>
+</div>
+<!-- Leaderboard Modal -->
+<div id="leaderboardModal" class="modal">
+  <div class="modal-content">
+    <h2>🏆 Leaderboard</h2>
+    <ol id="leaderboardList" class="leaderboard-list"></ol>
+    <div class="modal-buttons">
+      <button onclick="closeLeaderboard()">Close</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

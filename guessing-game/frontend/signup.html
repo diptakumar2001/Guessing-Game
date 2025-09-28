@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Signup</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="js/auth.js" defer></script>
+  <script src="js/validation.js" defer></script>
+</head>
+<body>
+  <div class="wrapper">
+    <h1>Signup</h1>
+    <p id="error-message"></p>
+    <form id="form">
+      <!-- Firstname -->
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+          <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47Zm0 80q108 0 211 51t155 129q12 17 1.5 37T826-144H134q-20 0-30.5-20t1.5-37q52-78 155-129t211-51Z"/>
+        </svg>
+        <input type="text" name="firstname" id="firstname-input" placeholder="Firstname" />
+        <div>
+          <span>🙂</span>
+          <select id="avatar-select">
+            <option value="😀">😀</option>
+            <option value="😎">😎</option>
+            <option value="🎮">🎮</option>
+            <option value="👾">👾</option>
+            <option value="🐱">🐱</option>
+            <option value="🐶">🐶</option>
+            <option value="🦊">🦊</option>
+            <option value="🐼">🐼</option>
+            <option value="🐸">🐸</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <span>@</span>
+        <input type="email" name="email" id="email-input" placeholder="Email" />
+      </div>
+
+      <!-- Password -->
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+          <path d="M720-480v-120q0-100-70-170t-170-70q-100 0-170 70t-70 170v120H240v360h480v-360h-60Zm-360-120q0-66 47-113t113-47q66 0 113 47t47 113v120H360v-120Z"/>
+        </svg>
+        <input type="password" name="password" id="password-input" placeholder="Password" />
+      </div>
+
+      <!-- Repeat Password -->
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+          <path d="M720-480v-120q0-100-70-170t-170-70q-100 0-170 70t-70 170v120H240v360h480v-360h-60Zm-360-120q0-66 47-113t113-47q66 0 113 47t47 113v120H360v-120Z"/>
+        </svg>
+        <input type="password" name="repeat-password" id="repeat-password-input" placeholder="Repeat Password" />
+      </div>
+
+      <!-- Signup Button -->
+      <button type="button" onclick="handleSignup()">Signup</button>
+    </form>
+
+    <p>Already have an Account? <a href="login.html">Login</a></p>
+  </div>
+
+  <!-- Signup Success Modal -->
+  <div id="signupSuccessModal" class="modal">
+    <div class="modal-content">
+      <h2>🎉 Signup Successful</h2>
+      <p>Your account has been created! Please log in to continue.</p>
+      <div class="modal-buttons">
+        <button onclick="redirectToLogin()">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    function handleSignup() {
+    const name = document.getElementById('firstname-input').value;
+    const email = document.getElementById('email-input').value;
+    const password = document.getElementById('password-input').value;
+    const repeat = document.getElementById('repeat-password-input').value;
+    const avatar = document.getElementById('avatar-select').value;
+
+    if (password !== repeat) {
+      document.getElementById('error-message').innerText = "Passwords do not match";
+      return;
+    }
+
+    signupUser(name, email, password, avatar)
+      .then(() => {
+        document.getElementById("signupSuccessModal").style.display = "flex";
+      })
+      .catch(err => {
+        document.getElementById('error-message').innerText = err.message;
+      });
+  }
+
+    function redirectToLogin() {
+      window.location.href = 'login.html';
+    }
+  </script>
+</body>
+</html>
