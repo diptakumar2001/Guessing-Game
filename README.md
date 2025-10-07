@@ -16,16 +16,47 @@
 ---
 
 ## Setup
+## Step 1: Clone the Repository
+Clone the repository by using the GitHub repo link
 
-### Backend
-```bash
-# from project root
-python -m venv venv
-# activate venv:
-venv\Scripts\activate     # Windows
-# or
-source venv/bin/activate  # macOS / Linux
+## Step 2: Running the game
 
-pip install -r Dependancies.txt
-python app.py
+- After cloning the repository, go to the project folder and double-click on start(Windows Batch file).
+- It should set up the backend by installing the dependencies.
+- If everything is successful, you should see something like this(Running on http://127.0.0.1:5000), which will open your browser and take you to the user login page.
 
+## Step 3: How to play
+- Sign up for an Account(Log in if you already have one).
+- On the home screen:
+    Choose a difficulty level (Easy, Medium, Hard)
+    Choose a category (Animals, Plants, Objects)
+- Click Start Game.
+- A silhouette image will appear. Type your guess in the input box.
+- You have a limited time to guess(Based on your difficulty level). If you’re stuck, click Hint for options.
+- Earn points for correct guesses.
+- When finished, view your score and leaderboard.
+- You can reset your scores, delete or log out your account, or play again anytime.
+
+## Security Notes
+
+- All passwords are securely hashed using bcrypt.
+- Login sessions are protected with JWT tokens.
+- CORS enabled for safe frontend-backend communication.
+
+## Future Improvements
+
+- Add sound effects and animations.
+- Implement online multiplayer mode.
+- Deploy backend to Render..
+- Deploy frontend to GitHub Pages.
+
+If you have any suggestions, please let me know.
+
+Email: diptakmondal2001.ind@gmail.com
+
+## Author
+Dipta Kumar Mondal
+
+Bachelor of Computer Science | Acadia University
+
+Dean's List(2024-2025)
